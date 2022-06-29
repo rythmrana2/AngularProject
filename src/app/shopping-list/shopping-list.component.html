@@ -2,6 +2,12 @@
     <div class="col-xs-10">
         <app-shopping-edit></app-shopping-edit>
         <hr>
-        <p>The list</p>
+        <ul class="list-group">
+            <!-- max said we are removing href from a because he wants 
+            to make a behave like a button later and a href will simply lead to unwanted behaviours -->
+            <a class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of ingredients">
+            {{ ingredient.name }} ({{ ingredient.amount }})
+            </a>
+        </ul>
     </div>
 </div>
