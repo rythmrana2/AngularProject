@@ -1,1 +1,10 @@
-<p>recipe-item works!</p>
+<a href="#" class="list-group-item clearfix" (click)="onSelected()">
+    <div class="pull-left">
+        <div class="list-group-item-heading">{{ itemdata.name }}</div>
+        <div class="list-group-item-text">{{ itemdata.description }}</div>
+    </div>
+    <span class="pull-right">
+        <!-- note that src can also be given value using string interpolation-->
+        <img [src]="itemdata.imagePath" alt="{{ itemdata.name }}" class="img-responsive" style="max-height: 50px;">
+    </span>
+</a>
