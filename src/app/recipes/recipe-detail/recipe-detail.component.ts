@@ -9,9 +9,14 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input()  ItemtoDisplay:Recipe;
+  successAlert: boolean=false;
   constructor(private recipeservice: RecipeService) { }
 
   ngOnInit(): void {
+    this.recipeservice.successfullAlert.subscribe(()=>{
+      this.successAlert=true;
+      setTimeout(()=>{this.successAlert=false},2000);}
+    );
   }
   onToShoppingList(){
     this.recipeservice.toShoppingList(this.ItemtoDisplay.ingredients);

@@ -3,6 +3,7 @@
         <img [src]="ItemtoDisplay.imagePath" [alt]="ItemtoDisplay.name" class="img-responsive" style="max-height: 300px;">
     </div>
 </div>
+<div class="alert alert-success" *ngIf="successAlert">Ingredients added to Shopping List</div>
 <div class="row">
     <div class="col-xs-12">
         <h1>{{ ItemtoDisplay.name }}</h1>
