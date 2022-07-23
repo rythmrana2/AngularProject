@@ -21,6 +21,17 @@ export class RecipeService{
       getRecipes(){
         return this.recipes.slice();
     }
+    getRecipe(name:string){
+      for(let recipe of this.recipes.slice()){
+        //the slice of recipes will create a shallow copy of recipes array, meaning the objects inside the new array will be not be copied but will be pointing to 
+        //the objects inside the original array, therefore changing the properties of objects inside the copy array will cause change of
+        // properties of original array as well. therefore you can return a deepcopy of an object so that the original objects are not affected.
+        //therefore here ding slice or not doesnt matter when returning object
+        if(recipe.name === name){
+          return recipe;
+        }
+      }
+  }
     toShoppingList(ingredients: Ingredient[]){
       for(let ingredient of ingredients){
         this.shoppinglistservice.addIngredients(ingredient);
