@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,19 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   collapsed:boolean = true;
-  @Output() pagename = new EventEmitter<string>();
-  constructor() { }
+  // @Output() pagename = new EventEmitter<string>();
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-  OnSelect(feature:string){
-    this.pagename.emit(feature);
-  }
-
+  // OnSelect(feature:string){
+  //   // this.pagename.emit(feature);
+  //   if(feature==='Recipe'){
+  //     this.router.navigate(['/recipes']);
+  //   }else if(feature==='List'){
+  //     this.router.navigate(['/shopping-list']);
+  //   }else{
+  //     this.router.navigate(['/']);
+  //   }
+  // }
 }
