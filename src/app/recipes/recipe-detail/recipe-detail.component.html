@@ -15,7 +15,8 @@
             <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 <li><a (click)="onToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
-                <li><a style="cursor: pointer;">Edit Recipe</a></li>
+                <li><a style="cursor: pointer;" routerLink="edit">Edit Recipe</a></li>
+                <!-- in the routerlink we just need to add edit because it already has the name in the link when we visit the recipe detail component -->
                 <li><a style="cursor: pointer;">Delete Recipe</a></li>
             </ul>
         </div>
