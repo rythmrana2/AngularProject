@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
@@ -8,14 +9,15 @@ import { RecipeService } from '../recipe.service';
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
+export class RecipeDetailComponent implements OnInit, OnDestroy {
   // @Input()  ItemtoDisplay:Recipe;
-   ItemtoDisplay:Recipe;
+  ItemtoDisplay:Recipe;
   successAlert: boolean=false;
+  alertsubscription : Subscription;
   constructor(private recipeservice: RecipeService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.recipeservice.successfullAlert.subscribe(()=>{
+    this.alertsubscription = this.recipeservice.successfullAlert.subscribe(()=>{
       this.successAlert=true;
       setTimeout(()=>{this.successAlert=false},2000);}
     );
@@ -25,6 +27,9 @@ export class RecipeDetailComponent implements OnInit {
   }
   onToShoppingList(){
     this.recipeservice.toShoppingList(this.ItemtoDisplay.ingredients);
+  }
+  ngOnDestroy(): void {
+    this.alertsubscription.unsubscribe();
   }
 
 }

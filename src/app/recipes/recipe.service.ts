@@ -1,12 +1,12 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
 
 @Injectable()
 export class RecipeService{
-    selectedRecipe = new EventEmitter<Recipe>();
-    successfullAlert = new EventEmitter<void>();
+    successfullAlert = new Subject<void>();
     private recipes: Recipe[] = [
         new Recipe('A Big Fat Burger', 'What else do I need to say!', 'https://www.stockvault.net/data/2016/04/19/194274/preview16.jpg',[
           new Ingredient('Patty', 1), new Ingredient('Buns', 2), new Ingredient('Lettuce', 3)
@@ -36,7 +36,7 @@ export class RecipeService{
       for(let ingredient of ingredients){
         this.shoppinglistservice.addIngredients(ingredient);
       }
-      this.shoppinglistservice.IngredientSubmitted.emit();
-      this.successfullAlert.emit();
+      this.shoppinglistservice.IngredientSubmitted.next();
+      this.successfullAlert.next();
     }
 }
